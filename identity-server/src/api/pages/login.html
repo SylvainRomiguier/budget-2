@@ -1,0 +1,13 @@
+<article>
+<header>Login</header>
+<form hx-post="/api/auth/login" hx-trigger="submit" hx-target="#me" hx-ext="json-enc">
+    <label>Username</label>
+    <input type="text" name="username" placeholder="Username"/>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Password" />
+    <button type="submit">Login</button>
+</form>
+<footer>
+<div id="me"></div>
+</footer>
+</article>

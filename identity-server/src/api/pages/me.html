@@ -1,0 +1,20 @@
+<div
+  id="me"
+  hx-get="/api/auth/me"
+  hx-trigger="load"
+  mustache-template="me-template"
+></div>
+<template id="me-template">
+  <article>
+    <div style="display: flex; align-items: center;">
+      <div style="padding: 10px;">
+        <img src="{{data.user.profileImage}}" alt="image profile" />
+      </div>
+      <div>
+        <div>Id: {{data.user.id}}</div>
+        <div>User name: {{data.user.username}}</div>
+        <div>Email address: {{data.user.email}}</div>
+      </div>
+    </div>
+  </article>
+</template>

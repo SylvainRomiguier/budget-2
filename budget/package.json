@@ -1,0 +1,24 @@
+{
+  "name": "budget",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts",
+    "migrate": "sh prisma/migrate.sh"
+  },
+  "dependencies": {
+    "@elysiajs/html": "^0.7.3",
+    "@libsql/client": "^0.3.6",
+    "@prisma/adapter-libsql": "^5.5.2",
+    "@prisma/client": "latest",
+    "elysia": "latest"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "prisma": "^5.4.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
