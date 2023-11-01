@@ -1,6 +1,6 @@
 import { AccountId, AccountIdDto } from "./AccountId";
 import { Name } from "../Name";
-import { TransactionId, TransactionIdDto } from "../Transaction/TransactionId";
+import { Transaction } from "../Transaction/Transaction";
 
 export type AccountDto = {
   id: AccountIdDto;
@@ -9,7 +9,7 @@ export type AccountDto = {
 export class Account {
   private _id: AccountId;
   private _name: Name;
-  private _transactionIds: TransactionId[] = [];
+  private _transactions: Transaction[] = [];
   constructor(accountDto: AccountDto) {
     this._id = new AccountId({
       userId: accountDto.id.userId,
@@ -21,7 +21,7 @@ export class Account {
     return {
       id: this._id,
       name: this._name,
-      transactionsIds: this._transactionIds,
+      transactions: this._transactions,
     };
   }
 
@@ -29,14 +29,14 @@ export class Account {
     return this._id.equal(account.value.id)
   }
 
-  addTransactionId(transactionId: TransactionId) {
-    this.removeTransactionId(transactionId);
-    this._transactionIds.push(transactionId);
+  addTransaction(transaction: Transaction) {
+    this.removeTransaction(transaction);
+    this._transactions.push(transaction);
   }
 
-  removeTransactionId(transactionId: TransactionId) {
-    this._transactionIds = this._transactionIds.filter(
-      (tId) => !tId.equal(transactionId)
+  removeTransaction(transaction: Transaction) {
+    this._transactions = this._transactions.filter(
+      (_transaction) => !_transaction.equal(transaction)
     );
   }
 }

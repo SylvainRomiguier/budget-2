@@ -49,4 +49,8 @@ export class Transaction {
       amount: this._amount,
     };
   }
+
+  equal(transaction:Transaction) {
+    return transaction._id.equal(this._id);
+  }
 }

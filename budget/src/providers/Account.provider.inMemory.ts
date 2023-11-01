@@ -6,8 +6,8 @@ import { User } from "../domain/User/User";
 
 export class AccountProviderInMemory implements IAccountProvider {
   private _accounts: Account[] = [];
-  async getAccount(accountId: AccountId) {
-    return this._accounts.find((account) => account.value.id.equal(accountId));
+  async getAccount(id: AccountId) {
+    return this._accounts.find((account) => account.value.id.equal(id));
   }
   async saveAccount(account: Account) {
     const existingAccount = this._accounts.find((_account) =>
