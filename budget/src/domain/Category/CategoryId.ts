@@ -6,10 +6,10 @@ export type CategoryIdDto = {
 };
 
 export class CategoryId extends ValueObject<CategoryIdDto> {
-  constructor(budgetIdDto: CategoryIdDto) {
+  constructor(categoryIdDto: CategoryIdDto) {
     super({
-      userId: budgetIdDto.userId,
-      categoryId: budgetIdDto.categoryId
+      userId: categoryIdDto.userId,
+      categoryId: categoryIdDto.categoryId
     });
   }
 }

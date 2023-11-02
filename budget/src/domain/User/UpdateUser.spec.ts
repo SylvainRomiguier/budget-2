@@ -1,6 +1,6 @@
 import { describe, it, expect } from "bun:test";
 import { UserProviderInMemory } from "../../providers/User.provider.InMemory";
-import { SaveUser } from "./SaveUser";
+import { UpdateUser } from "./UpdateUser";
 import { AccountProviderInMemory } from "../../providers/Account.provider.inMemory";
 import { CreateUser } from "./CreateUser";
 import { GetUser } from "./GetUser";
@@ -9,11 +9,11 @@ import { Email } from "../Email";
 import { Name } from "../Name";
 import { CategoryProviderInMemory } from "../../providers/Category.provider.InMemory";
 
-describe("SaveUser", () => {
+describe("Update User", () => {
   const userProvider = new UserProviderInMemory();
   const createUser = new CreateUser(userProvider);
   const getUser = new GetUser(userProvider, new AccountProviderInMemory(), new CategoryProviderInMemory());
-  const saveUser = new SaveUser(userProvider);
+  const saveUser = new UpdateUser(userProvider);
   it("should update the name and email of an existing user, save the user and get the user with the new name and email", async () => {
     await createUser.add({
       id: "my-other-id",

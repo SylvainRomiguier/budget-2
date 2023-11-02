@@ -21,6 +21,18 @@ export class AccountShort {
       name: this._name,
     };
   }
+  
+  setName(newValue: string) {
+    this._name = new Name(newValue);
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get id() {
+    return this._id;
+  }
 
   equal(accountShort: AccountShort) {
     return accountShort._id.equal(this._id);
