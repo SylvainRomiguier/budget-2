@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { IUserProvider } from "../domain/IOC/interfaces/User.interface";
+import { IUserProvider } from "../domain/interfaces/User.interface";
 import { User } from "../domain/User/User";
 
 export class UserProvider implements IUserProvider {

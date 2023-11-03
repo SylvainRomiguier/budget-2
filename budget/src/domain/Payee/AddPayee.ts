@@ -1,5 +1,5 @@
 import { Account } from "../Account/Account";
-import { IPayeeProvider } from "../IOC/interfaces/Payee.interface";
+import { IPayeeProvider } from "../interfaces/Payee.interface";
 import { Payee, PayeeDto } from "./Payee";
 
 export class AddPayee {

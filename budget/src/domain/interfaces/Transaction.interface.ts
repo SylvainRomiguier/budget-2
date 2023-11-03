@@ -1,6 +1,6 @@
-import { Account } from "../../Account/Account";
-import { Transaction } from "../../Transaction/Transaction";
-import { TransactionId } from "../../Transaction/TransactionId";
+import { Account } from "../Account/Account";
+import { Transaction } from "../Transaction/Transaction";
+import { TransactionId } from "../Transaction/TransactionId";
 
 export interface ITransactionProvider {
     getTransaction: (accountId: TransactionId) => Promise<Transaction | undefined>;

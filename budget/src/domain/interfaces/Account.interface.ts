@@ -1,7 +1,7 @@
-import { User } from "../../User/User";
-import { Account } from "../../Account/Account";
-import { AccountId } from "../../Account/AccountId";
-import { AccountShort } from "../../Account/AccountShort";
+import { User } from "../User/User";
+import { Account } from "../Account/Account";
+import { AccountId } from "../Account/AccountId";
+import { AccountShort } from "../Account/AccountShort";
 
 export interface IAccountProvider {
     getAccount: (id: AccountId) => Promise<Account | undefined>;

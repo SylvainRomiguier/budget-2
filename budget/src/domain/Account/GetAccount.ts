@@ -2,7 +2,7 @@ import {
   IAccountProvider,
   IPayeeProvider,
   ITransactionProvider,
-} from "../IOC/interfaces";
+} from "../interfaces";
 import { AccountId } from "./AccountId";
 
 export class GetAccount {

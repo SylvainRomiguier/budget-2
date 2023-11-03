@@ -1,5 +1,5 @@
 import { Account } from "../domain/Account/Account";
-import { IPayeeProvider } from "../domain/IOC/interfaces/Payee.interface";
+import { IPayeeProvider } from "../domain/interfaces/Payee.interface";
 import { Payee } from "../domain/Payee/Payee";
 import { PayeeId } from "../domain/Payee/PayeeId";
 

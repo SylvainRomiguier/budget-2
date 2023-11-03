@@ -1,4 +1,4 @@
-import { ICategoryProvider } from "../IOC/interfaces/Category.interface";
+import { ICategoryProvider } from "../interfaces/Category.interface";
 import { User } from "../User/User";
 import { Category, CategoryDto } from "./Category";
 

@@ -2,7 +2,7 @@ import {
   IAccountProvider,
   IUserProvider,
   ICategoryProvider,
-} from "../IOC/interfaces";
+} from "../interfaces";
 
 export class GetUser {
   constructor(

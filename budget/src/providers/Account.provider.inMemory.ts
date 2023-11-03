@@ -1,7 +1,7 @@
 import { Account } from "../domain/Account/Account";
 import { AccountId } from "../domain/Account/AccountId";
 import { AccountShort } from "../domain/Account/AccountShort";
-import { IAccountProvider } from "../domain/IOC/interfaces/Account.interface";
+import { IAccountProvider } from "../domain/interfaces/Account.interface";
 import { User } from "../domain/User/User";
 
 export class AccountProviderInMemory implements IAccountProvider {

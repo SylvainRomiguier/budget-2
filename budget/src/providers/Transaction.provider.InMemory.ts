@@ -1,5 +1,5 @@
 import { Account } from "../domain/Account/Account";
-import { ITransactionProvider } from "../domain/IOC/interfaces/Transaction.interface";
+import { ITransactionProvider } from "../domain/interfaces/Transaction.interface";
 import { Transaction } from "../domain/Transaction/Transaction";
 import { TransactionId } from "../domain/Transaction/TransactionId";
 

@@ -1,5 +1,5 @@
 import { Account } from "../Account/Account";
-import { ITransactionProvider } from "../IOC/interfaces/Transaction.interface";
+import { ITransactionProvider } from "../interfaces/Transaction.interface";
 import { Transaction, TransactionDto } from "./Transaction";
 
 export class AddTransaction {
