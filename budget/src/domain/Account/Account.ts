@@ -1,6 +1,7 @@
 import {  AccountIdDto } from "./AccountId";
 import { Transaction } from "../Transaction/Transaction";
 import { AccountShort } from "./AccountShort";
+import { Payee } from "../Payee/Payee";
 
 export type AccountDto = {
   id: AccountIdDto;
@@ -8,13 +9,14 @@ export type AccountDto = {
 };
 export class Account extends AccountShort {
   private _transactions: Transaction[] = [];
+  private _payees: Payee[] = [];
   
   static FromAccountShort(accountShort: AccountShort) {
     return new Account({
       id: {
         ...accountShort.value.id.value
       },
-      name: accountShort.value.name.value
+      name: accountShort.value.name.value,
     });
   }
 
@@ -23,6 +25,7 @@ export class Account extends AccountShort {
       id: this.id,
       name: this.name,
       transactions: this._transactions,
+      payees: this._payees
     };
   }
 
@@ -38,6 +41,17 @@ export class Account extends AccountShort {
   removeTransaction(transaction: Transaction) {
     this._transactions = this._transactions.filter(
       (_transaction) => !_transaction.equal(transaction)
+    );
+  }
+
+  addPayee(payee: Payee) {
+    this.removePayee(payee);
+    this._payees.push(payee);
+  }
+
+  removePayee(payee: Payee) {
+    this._payees = this._payees.filter(
+      (_payee) => !_payee.equal(payee)
     );
   }
 }

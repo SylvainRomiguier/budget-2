@@ -21,7 +21,7 @@ export class AccountShort {
       name: this._name,
     };
   }
-  
+
   setName(newValue: string) {
     this._name = new Name(newValue);
   }

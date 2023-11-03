@@ -50,6 +50,10 @@ export class Transaction {
     };
   }
 
+  isInflow() {
+    return this._type.value === "Inflow";
+  }
+
   equal(transaction:Transaction) {
     return transaction._id.equal(this._id);
   }

@@ -9,7 +9,11 @@ import { CategoryProviderInMemory } from "../../providers/Category.provider.InMe
 describe("GetUser", () => {
   const userProvider = new UserProviderInMemory();
   const createUser = new CreateUser(userProvider);
-  const getUser = new GetUser(userProvider, new AccountProviderInMemory(), new CategoryProviderInMemory());
+  const getUser = new GetUser(
+    userProvider,
+    new AccountProviderInMemory(),
+    new CategoryProviderInMemory()
+  );
   it("should get a user from id", async () => {
     await createUser.add({
       id: "my-user-id",
@@ -22,7 +26,7 @@ describe("GetUser", () => {
       name: new Name("Sylvain Romiguier"),
       email: new Email("some-email@gmail.com"),
       accounts: [],
-      categories: []
+      categories: [],
     });
   });
   it("should throw an error if user is not found from id", () => {

@@ -8,12 +8,15 @@ import { UserProviderInMemory } from "../../providers/User.provider.InMemory";
 import { CreateUser } from "../User/CreateUser";
 import { GetUser } from "../User/GetUser";
 import { AccountId } from "./AccountId";
-import { Name } from "../Name";
 import { Account } from "./Account";
+import { TransactionProviderInMemory } from "../../providers/Transaction.provider.InMemory";
+import { PayeeProviderInMemory } from "../../providers/Payee.provider.InMemory";
 
 describe("Update Account", () => {
   const userProvider = new UserProviderInMemory();
   const accountProvider = new AccountProviderInMemory();
+  const transactionProvider = new TransactionProviderInMemory();
+  const payeeProvider = new PayeeProviderInMemory();
   const createUser = new CreateUser(userProvider);
   const getUser = new GetUser(
     userProvider,
@@ -21,7 +24,11 @@ describe("Update Account", () => {
     new CategoryProviderInMemory()
   );
   const addAccount = new AddAccount(accountProvider);
-  const getAccount = new GetAccount(accountProvider);
+  const getAccount = new GetAccount(
+    accountProvider,
+    transactionProvider,
+    payeeProvider
+  );
   const updateAccount = new UpdateAccount(accountProvider);
   it("should update and persist an account", async () => {
     await createUser.add({

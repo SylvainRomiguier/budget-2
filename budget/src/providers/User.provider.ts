@@ -1,10 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 import { IUserProvider } from "../domain/IOC/interfaces/User.interface";
 import { User } from "../domain/User/User";
-import { IAccountProvider } from "../domain/IOC/interfaces/Account.interface";
 
 export class UserProvider implements IUserProvider {
-  constructor(private prisma: PrismaClient, private accountProvider: IAccountProvider) {}
+  constructor(private prisma: PrismaClient) {}
   async getUser(id: string) {
     const userDto = await this.prisma.user.findUnique({
       where: {
