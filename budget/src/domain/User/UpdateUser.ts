@@ -1,4 +1,4 @@
-import { IUserProvider } from "../IOC/interfaces";
+import { IUserProvider } from "../interfaces";
 import { User } from "./User";
 
 

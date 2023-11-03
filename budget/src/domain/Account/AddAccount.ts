@@ -1,4 +1,4 @@
-import { IAccountProvider } from "../IOC/interfaces";
+import { IAccountProvider } from "../interfaces";
 import { User } from "../User/User";
 import { Account, AccountDto } from "./Account";
 import { AccountShort } from "./AccountShort";

@@ -2,16 +2,21 @@ import { describe, it, expect } from "bun:test";
 import { UserProviderInMemory } from "../../providers/User.provider.InMemory";
 import { AccountProviderInMemory } from "../../providers/Account.provider.inMemory";
 import { CreateUser } from "../User/CreateUser";
-import { AddAccount } from "./AddAccount";
+import { AddAccount } from "../Account/AddAccount";
 import { GetUser } from "../User/GetUser";
 import { CategoryProviderInMemory } from "../../providers/Category.provider.InMemory";
-describe("Add Account", () => {
+import { Account } from "../Account/Account";
+import { AddPayee } from "./AddPayee";
+import { PayeeProviderInMemory } from "../../providers/Payee.provider.InMemory";
+describe("Add Payee", () => {
     const userProvider = new UserProviderInMemory();
     const accountProvider = new AccountProviderInMemory();
+    const payeeProvider = new PayeeProviderInMemory();
     const createUser = new CreateUser(userProvider);
     const getUser = new GetUser(userProvider, accountProvider, new CategoryProviderInMemory());
     const addAccount = new AddAccount(accountProvider);
- it("should add an account to a user", async () => {
+    const addPayee = new AddPayee(payeeProvider);
+ it("should add a payee to an account", async () => {
     await createUser.add({
         id: "my-user-id",
         name: "Sylvain Romiguier",
@@ -20,6 +25,11 @@ describe("Add Account", () => {
 
     const user = await getUser.fromId("my-user-id");
     await addAccount.toUser(user, {id: {userId: "my-user-id", accountId: "account-1"}, name: "My bank account"});
-    expect(user.value.accounts).toHaveLength(1);
+    const account = Account.FromAccountShort(user.value.accounts[0]);
+    await addPayee.toAccount(account, {id: {
+        accountId:{userId: "my-user-id", accountId: "account-1"},
+        payeeId: "payee-id-1"
+    }, name: "Amazon Shop"});
+    expect(account.value.payees).toHaveLength(1);
  })
 })

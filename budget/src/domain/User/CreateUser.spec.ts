@@ -9,7 +9,6 @@ describe("CreateUser", () => {
       id: "my-user-id",
       name: "Sylvain Romiguier",
       email: "some-email@gmail.com",
-      accounts: [],
     })).resolves.toBeUndefined();
   });
 });

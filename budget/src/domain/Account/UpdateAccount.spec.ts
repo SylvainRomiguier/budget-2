@@ -51,10 +51,11 @@ describe("Update Account", () => {
 
     accountShort!.setName("New Account Name");
     const account = Account.FromAccountShort(accountShort!);
-    await updateAccount.persist(account);
+    await updateAccount.fromUser(user, account);
     const persistedAccount = await getAccount.fromId(
       new AccountId({ userId: "my-user-id", accountId: "account-1" })
     );
     expect(persistedAccount?.value.name.value).toBe("New Account Name");
+    expect(user.value.accounts[0].value.name.value).toBe("New Account Name");
   });
 });
