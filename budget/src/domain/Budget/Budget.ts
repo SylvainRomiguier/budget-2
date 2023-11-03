@@ -1,35 +1,25 @@
-import { BudgetId, BudgetIdDto } from "./BudgetId";
-import { CategoryBudget, CategoryBudgetDto } from "./CategoryBudget";
+import {  BudgetShort } from "./BudgetShort";
+import { BudgetYear } from "./BudgetYear";
 
-export type BudgetDto = {
-  budgetId: BudgetIdDto;
-  categoryBudgets: CategoryBudgetDto[];
-};
-export class Budget {
-  private _id: BudgetId;
-  private _categoryBudgets: CategoryBudget[] = [];
-  constructor(budgetDto: BudgetDto) {
-    this._id = new BudgetId(budgetDto.budgetId);
-    this._categoryBudgets = budgetDto.categoryBudgets.map(
-      (cb) => new CategoryBudget(cb)
-    );
-  }
+export class Budget extends BudgetShort {
+  private _budgetYears: BudgetYear[] = [];
 
   get value() {
     return {
-      id: this._id,
-      categoryBudgets: this._categoryBudgets,
+      id: this.id,
+      name: this.name,
+      budgetYears: this._budgetYears,
     };
   }
 
-  addCategoryBudget(categoryBudget: CategoryBudget) {
-    this.removeCategoryBudget(categoryBudget);
-    this._categoryBudgets.push(categoryBudget);
+  addYear(budgetYear: BudgetYear) {
+    this.removeYear(budgetYear);
+    this._budgetYears.push(budgetYear);
   }
 
-  removeCategoryBudget(categoryBudget: CategoryBudget) {
-    this._categoryBudgets = this._categoryBudgets.filter(
-      (cb) => !cb.equal(categoryBudget)
+  removeYear(budgetYear: BudgetYear) {
+    this._budgetYears = this._budgetYears.filter(
+      (by) => !by.equal(budgetYear)
     );
   }
 }
