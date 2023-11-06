@@ -4,6 +4,7 @@ import { ITransactionProvider } from "./Transaction.interface";
 import { IPayeeProvider } from "./Payee.interface";
 import { ICategoryProvider } from "./Category.interface";
 import { IBudgetProvider } from "./Budget.interface";
+import { IUUIDService } from "./UUID.interface";
 
 export {
   IAccountProvider,
@@ -11,5 +12,6 @@ export {
   ITransactionProvider,
   ICategoryProvider,
   IPayeeProvider,
-  IBudgetProvider
+  IBudgetProvider,
+  IUUIDService
 };

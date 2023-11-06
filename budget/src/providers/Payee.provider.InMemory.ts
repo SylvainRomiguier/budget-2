@@ -1,4 +1,4 @@
-import { Account } from "../domain/Account/Account";
+import { Account } from "../domain/Account/AccountDetails";
 import { IPayeeProvider } from "../domain/interfaces/Payee.interface";
 import { Payee } from "../domain/Payee/Payee";
 import { PayeeId } from "../domain/Payee/PayeeId";

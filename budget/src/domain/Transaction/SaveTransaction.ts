@@ -1,11 +1,9 @@
-import { Account } from "../Account/Account";
 import { ITransactionProvider } from "../interfaces";
 import { Transaction } from "./Transaction";
 
-export class UpdateTransaction {
+export class SaveTransaction {
     constructor(private transactionProvider:ITransactionProvider){}
-    async fromAccount(account: Account, transaction:Transaction) {
+    async from(transaction:Transaction) {
         await this.transactionProvider.saveTransaction(transaction);
-        account.addTransaction(transaction);
     }
 }

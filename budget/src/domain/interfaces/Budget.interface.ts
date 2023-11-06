@@ -1,4 +1,4 @@
-import { Budget } from "../Budget/Budget";
+import { Budget } from "../Budget/BudgetDetails";
 import { BudgetId } from "../Budget/BudgetId";
 import { User } from "../User/User";
 

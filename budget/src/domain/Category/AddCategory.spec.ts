@@ -1,26 +1,21 @@
-import { describe, it, expect } from "bun:test";
-import { UserProviderInMemory } from "../../providers/User.provider.InMemory";
-import { AccountProviderInMemory } from "../../providers/Account.provider.inMemory";
-import { CreateUser } from "../User/CreateUser";
+import { describe, it, expect } from "bun:test";;
 import { AddCategory } from "./AddCategory";
-import { GetUser } from "../User/GetUser";
 import { CategoryProviderInMemory } from "../../providers/Category.provider.InMemory";
+import { UUIDService } from "../../providers/UUID.service";
+import { User } from "../User/User";
 describe("Add Category", () => {
-    const userProvider = new UserProviderInMemory();
-    const accountProvider = new AccountProviderInMemory();
+   const uuidService = new UUIDService();
     const categoryProvider = new CategoryProviderInMemory();
-    const createUser = new CreateUser(userProvider);
-    const getUser = new GetUser(userProvider, accountProvider, categoryProvider);
-    const addCategory = new AddCategory(categoryProvider);
+    const addCategory = new AddCategory(categoryProvider, uuidService);
  it("should add a category to a user", async () => {
-    await createUser.add({
-        id: "my-user-id",
-        name: "Sylvain Romiguier",
-        email: "some-email@gmail.com",
-      });
+   const user = new User({
+      id: "my-user-id",
+      name: "My User",
+      email: "user-email@gmail.com",
+    });
 
-    const user = await getUser.fromId("my-user-id");
-    await addCategory.toUser(user, {id: {userId: "my-user-id", categoryId: "cat-1"}, name: "Vehicle expenses"});
+    const category = await addCategory.toUser(user,  "Vehicle expenses");
     expect(user.value.categories).toHaveLength(1);
+    expect(category).toBeDefined();
  })
 })

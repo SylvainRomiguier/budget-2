@@ -1,4 +1,4 @@
-import { Account } from "../Account/Account";
+import { Account } from "../Account/AccountDetails";
 import { Payee } from "../Payee/Payee";
 import { PayeeId } from "../Payee/PayeeId";
 

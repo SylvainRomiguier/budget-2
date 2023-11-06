@@ -2,9 +2,9 @@ import { IUserProvider } from "../interfaces";
 import { User } from "./User";
 
 
-export class UpdateUser {
+export class SaveUser {
     constructor(private userProvider:IUserProvider){}
-    async persist(user:User) {
+    async from(user:User) {
         await this.userProvider.saveUser(user);
     }
 }

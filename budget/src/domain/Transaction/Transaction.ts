@@ -1,15 +1,15 @@
-import { CategoryId, CategoryIdDto } from "../Category/CategoryId";
-import { PayeeId, PayeeIdDto } from "../Payee/PayeeId";
-import { TransactionId, TransactionIdDto } from "./TransactionId";
+import { CategoryId } from "../Category/CategoryId";
+import { PayeeId } from "../Payee/PayeeId";
+import { TransactionId } from "./TransactionId";
 import { TransactionType } from "./TransactionType";
 
 export type TransactionDto = {
-  id: TransactionIdDto,
+  id: TransactionId,
   date: string;
   type: string;
-  payeeId: PayeeIdDto;
+  payeeId: PayeeId;
   description: string;
-  categoryId: CategoryIdDto;
+  categoryId: CategoryId;
   amount: number;
 };
 
@@ -30,11 +30,11 @@ export class Transaction {
     categoryId,
     amount,
   }: TransactionDto) {
-    this._id = new TransactionId(id);
+    this._id = id;
     this._date = new Date(date);
     this._type = new TransactionType(type);
-    this._payeeId = new PayeeId(payeeId);
-    this._categoryId = new CategoryId(categoryId);
+    this._payeeId = payeeId;
+    this._categoryId = categoryId;
     this._description = description;
     this._amount = amount;
   }

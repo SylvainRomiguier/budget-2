@@ -1,21 +1,23 @@
-import { IAccountProvider } from "../interfaces";
+import { IAccountProvider, IUUIDService } from "../interfaces";
 import { User } from "../User/User";
-import { Account, AccountDto } from "./Account";
-import { AccountShort } from "./AccountShort";
+import { Account } from "./Account";
 
 export class AddAccount {
-  constructor(private accountProvider: IAccountProvider) {}
-  async toUser(user: User, { id, name }: AccountDto) {
+  constructor(
+    private accountProvider: IAccountProvider,
+    private uuidService: IUUIDService
+  ) {}
+  async toUser(user: User, name: string) {
+    const newId = this.uuidService.getRandomUUID();
     const account = new Account({
-      id,
+      id: {
+        userId: user.value.id,
+        accountId: newId,
+      },
       name,
     });
     await this.accountProvider.saveAccount(account);
-    user.addAccount(
-      new AccountShort({
-        id,
-        name,
-      })
-    );
+    user.addAccount(account);
+    return account;
   }
 }

@@ -1,19 +1,15 @@
-import { AccountId, AccountIdDto } from "../Account/AccountId";
+import { AccountId } from "../Account/AccountId";
 import { ValueObject } from "../ValueObject";
 
-export type TPayeeId = {
+export type PayeeIdDto = {
   accountId: AccountId;
   payeeId: string;
 };
-export type PayeeIdDto = {
-  accountId: AccountIdDto;
-  payeeId: string;
-};
 
-export class PayeeId extends ValueObject<TPayeeId> {
+export class PayeeId extends ValueObject<PayeeIdDto> {
   constructor(payeeIdDto: PayeeIdDto) {
     super({
-      accountId: new AccountId(payeeIdDto.accountId),
+      accountId: payeeIdDto.accountId,
       payeeId: payeeIdDto.payeeId,
     });
   }

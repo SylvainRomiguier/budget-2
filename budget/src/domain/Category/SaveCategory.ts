@@ -1,11 +1,9 @@
-import { User } from "../User/User";
 import { ICategoryProvider } from "../interfaces";
 import { Category } from "./Category";
 
-export class UpdateCategory {
+export class SaveCategory {
   constructor(private categoryProvider: ICategoryProvider) {}
-  async fromUser(user: User, category: Category) {
+  async from(category: Category) {
     await this.categoryProvider.saveCategory(category);
-    user.addCategory(category);
   }
 }

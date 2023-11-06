@@ -1,31 +1,17 @@
-import { AccountId, AccountIdDto } from "../Account/AccountId";
+import { AccountId } from "../Account/AccountId";
 import { ValueObject } from "../ValueObject";
 
-export type TTransactionId = {
-    accountId: AccountId,
-    transactionId: string
-}
 
 export type TransactionIdDto = {
-  accountId: AccountIdDto;
+  accountId: AccountId;
   transactionId: string;
 };
 
-export class TransactionId extends ValueObject<TTransactionId> {
+export class TransactionId extends ValueObject<TransactionIdDto> {
   constructor(transactionIdDto: TransactionIdDto) {
     super({
-      accountId: new AccountId(transactionIdDto.accountId),
+      accountId: transactionIdDto.accountId,
       transactionId: transactionIdDto.transactionId
     });
-  }
-
-  static FromAccountId(transactionId: TTransactionId) {
-    return new TransactionId({
-        accountId: {
-            userId: transactionId.accountId.value.userId,
-            accountId: transactionId.accountId.value.accountId,
-        },
-        transactionId: transactionId.transactionId
-    })
   }
 }

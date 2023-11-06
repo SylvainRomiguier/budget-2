@@ -1,4 +1,4 @@
-import { Account } from "../domain/Account/Account";
+import { Account } from "../domain/Account/AccountDetails";
 import { ITransactionProvider } from "../domain/interfaces/Transaction.interface";
 import { Transaction } from "../domain/Transaction/Transaction";
 import { TransactionId } from "../domain/Transaction/TransactionId";

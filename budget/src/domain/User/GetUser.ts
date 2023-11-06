@@ -15,7 +15,7 @@ export class GetUser {
     if (!user) {
       throw new Error("User not found.");
     }
-    const userAccounts = await this.accountProvider.getAccountsShortByUser(
+    const userAccounts = await this.accountProvider.getAccountsByUser(
       user
     );
     userAccounts.forEach(user.addAccount);

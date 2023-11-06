@@ -1,35 +1,30 @@
 import { describe, it, expect } from "bun:test";
-import { UserProviderInMemory } from "../../providers/User.provider.InMemory";
-import { AccountProviderInMemory } from "../../providers/Account.provider.inMemory";
-import { CreateUser } from "../User/CreateUser";
-import { AddAccount } from "../Account/AddAccount";
-import { GetUser } from "../User/GetUser";
-import { CategoryProviderInMemory } from "../../providers/Category.provider.InMemory";
-import { Account } from "../Account/Account";
 import { AddPayee } from "./AddPayee";
 import { PayeeProviderInMemory } from "../../providers/Payee.provider.InMemory";
+import { UUIDService } from "../../providers/UUID.service";
+import { GetAccountDetails } from "../Account/GetAccountDetails";
+import { TransactionProviderInMemory } from "../../providers/Transaction.provider.InMemory";
+import { Account } from "../Account/Account";
 describe("Add Payee", () => {
-    const userProvider = new UserProviderInMemory();
-    const accountProvider = new AccountProviderInMemory();
-    const payeeProvider = new PayeeProviderInMemory();
-    const createUser = new CreateUser(userProvider);
-    const getUser = new GetUser(userProvider, accountProvider, new CategoryProviderInMemory());
-    const addAccount = new AddAccount(accountProvider);
-    const addPayee = new AddPayee(payeeProvider);
- it("should add a payee to an account", async () => {
-    await createUser.add({
-        id: "my-user-id",
-        name: "Sylvain Romiguier",
-        email: "some-email@gmail.com",
-      });
-
-    const user = await getUser.fromId("my-user-id");
-    await addAccount.toUser(user, {id: {userId: "my-user-id", accountId: "account-1"}, name: "My bank account"});
-    const account = Account.FromAccountShort(user.value.accounts[0]);
-    await addPayee.toAccount(account, {id: {
-        accountId:{userId: "my-user-id", accountId: "account-1"},
-        payeeId: "payee-id-1"
-    }, name: "Amazon Shop"});
-    expect(account.value.payees).toHaveLength(1);
- })
-})
+  const uuidService = new UUIDService();
+  const transactionProvider = new TransactionProviderInMemory();
+  const payeeProvider = new PayeeProviderInMemory();
+  const getAccountDetails = new GetAccountDetails(
+    transactionProvider,
+    payeeProvider
+  );
+  const addPayee = new AddPayee(payeeProvider, uuidService);
+  it("should add a payee to account details", async () => {
+    const account = new Account({
+      id: {
+        userId: "my-user-id",
+        accountId: "account-1",
+      },
+      name: "bank account",
+    });
+    const accountDetails = await getAccountDetails.from(account);
+    const payee = await addPayee.toAccount(accountDetails, "Amazon Shop");
+    expect(accountDetails.value.payees).toHaveLength(1);
+    expect(payee).toBeDefined();
+  });
+});

@@ -1,25 +1,34 @@
-import {  BudgetShort } from "./BudgetShort";
-import { BudgetYear } from "./BudgetYear";
+import { Name } from "../Name";
+import { BudgetIdDto, BudgetId } from "./BudgetId";
 
-export class Budget extends BudgetShort {
-  private _budgetYears: BudgetYear[] = [];
+export type BudgetDto = {
+    id: BudgetIdDto;
+    name: string;
+  };
+  export class Budget {
+    private _id: BudgetId;
+    private _name: Name;
+    constructor(budgetDto: BudgetDto) {
+      this._id = new BudgetId(budgetDto.id);
+      this._name = new Name(budgetDto.name);
+    }
+  
+    get value() {
+      return {
+        id: this._id,
+        name: this._name,
+      };
+    }
 
-  get value() {
-    return {
-      id: this.id,
-      name: this.name,
-      budgetYears: this._budgetYears,
-    };
-  }
+    get id() {
+        return this._id;
+    }
 
-  addYear(budgetYear: BudgetYear) {
-    this.removeYear(budgetYear);
-    this._budgetYears.push(budgetYear);
-  }
+    get name() {
+        return this._name;
+    }
 
-  removeYear(budgetYear: BudgetYear) {
-    this._budgetYears = this._budgetYears.filter(
-      (by) => !by.equal(budgetYear)
-    );
-  }
+    equal(budget: Budget) {
+      return budget._id.equal(this._id);
+    }
 }
