@@ -5,11 +5,4 @@ export type AccountIdDto = {
   accountId: string;
 };
 
-export class AccountId extends ValueObject<AccountIdDto> {
-  constructor(accountIdDto: AccountIdDto) {
-    super({
-      userId: accountIdDto.userId,
-      accountId: accountIdDto.accountId
-    });
-  }
-}
+export class AccountId extends ValueObject<AccountIdDto> {}

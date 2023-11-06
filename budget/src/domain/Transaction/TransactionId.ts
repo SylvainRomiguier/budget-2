@@ -7,11 +7,4 @@ export type TransactionIdDto = {
   transactionId: string;
 };
 
-export class TransactionId extends ValueObject<TransactionIdDto> {
-  constructor(transactionIdDto: TransactionIdDto) {
-    super({
-      accountId: transactionIdDto.accountId,
-      transactionId: transactionIdDto.transactionId
-    });
-  }
-}
+export class TransactionId extends ValueObject<TransactionIdDto> {}

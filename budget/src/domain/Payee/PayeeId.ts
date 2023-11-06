@@ -6,11 +6,4 @@ export type PayeeIdDto = {
   payeeId: string;
 };
 
-export class PayeeId extends ValueObject<PayeeIdDto> {
-  constructor(payeeIdDto: PayeeIdDto) {
-    super({
-      accountId: payeeIdDto.accountId,
-      payeeId: payeeIdDto.payeeId,
-    });
-  }
-}
+export class PayeeId extends ValueObject<PayeeIdDto> {}
