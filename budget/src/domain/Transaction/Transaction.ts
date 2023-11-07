@@ -4,7 +4,7 @@ import { TransactionId } from "./TransactionId";
 import { TransactionType } from "./TransactionType";
 
 export type TransactionDto = {
-  id: TransactionId,
+  id: TransactionId;
   date: string;
   type: string;
   payeeId: PayeeId;
@@ -51,11 +51,11 @@ export class Transaction {
     };
   }
 
-  isInflow() {
-    return this._type.value === "Inflow";
+  get signedAmount() {
+  return this._type.value === "Inflow" ? this._amount : -this._amount;
   }
 
-  equal(transaction:Transaction) {
+  equal(transaction: Transaction) {
     return transaction._id.equal(this._id);
   }
 }

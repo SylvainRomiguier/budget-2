@@ -4,14 +4,16 @@ import { User } from "../domain/User/User";
 import { IBudgetProvider } from "../domain/interfaces";
 
 export class BudgetProviderInMemory implements IBudgetProvider {
+    private _budgets: Budget[] = [];
     async getBudgetsByUser(user: User) {
-        return [];
+        return this._budgets.filter(budget => budget.id.value.userId === user.value.id);
     }
     async getBudget(id: BudgetId) {
-        return undefined
+        return this._budgets.find(budget => budget.id.equal(id));
     }
     async saveBudget(budget: Budget) {
-        return undefined
+        this._budgets = this._budgets.filter(_budget => !_budget.equal(budget));
+        this._budgets.push(budget);
     }
     
 }

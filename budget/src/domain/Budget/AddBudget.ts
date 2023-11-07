@@ -13,6 +13,7 @@ export class AddBudget {
             name
         });
         await this.budgetProvider.saveBudget(budget);
+        user.addBudget(budget);
        return budget;
     }
 }

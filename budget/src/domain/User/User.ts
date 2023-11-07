@@ -22,6 +22,9 @@ export class User {
     this._id = userDto.id;
     this._name = new Name(userDto.name);
     this._email = new Email(userDto.email);
+    // this.removeAccount = this.removeAccount.bind(this);
+    // this.removeCategory = this.removeCategory.bind(this);
+    // this.removeBudget = this.removeBudget.bind(this);
   }
 
   get value() {
@@ -31,25 +34,28 @@ export class User {
       email: this._email,
       accounts: this._accounts,
       categories: this._categories,
-      budgets: this._budgets
+      budgets: this._budgets,
     };
   }
 
-  equal(user:User) {
+  equal(user: User) {
     return this._id === user._id;
   }
 
   addAccount(account: Account) {
     this.removeAccount(account);
     this._accounts.push(account);
+
   }
 
   removeAccount(account: Account) {
-    this._accounts = this._accounts.filter((_account) => !_account.equal(account));
+    this._accounts = this._accounts.filter(
+      (_account) => !_account.equal(account)
+    );
   }
 
   getAccountById(id: AccountId) {
-    return this._accounts.find(account => account.id.equal(id));
+    return this._accounts.find((account) => account.id.equal(id));
   }
 
   addCategory(category: Category) {
@@ -58,7 +64,9 @@ export class User {
   }
 
   removeCategory(category: Category) {
-    this._categories = this._categories.filter((_category) => !_category.equal(category));
+    this._categories = this._categories.filter(
+      (_category) => !_category.equal(category)
+    );
   }
 
   addBudget(budget: Budget) {

@@ -2,27 +2,40 @@ import {
   IAccountProvider,
   IUserProvider,
   ICategoryProvider,
+  ITransactionProvider,
+  IBudgetProvider,
 } from "../interfaces";
 
 export class GetUser {
   constructor(
     private userProvider: IUserProvider,
     private accountProvider: IAccountProvider,
-    private categoryProvider: ICategoryProvider
+    private transactionProvider: ITransactionProvider,
+    private categoryProvider: ICategoryProvider,
+    private budgetProvider: IBudgetProvider
   ) {}
   async fromId(id: string) {
     const user = await this.userProvider.getUser(id);
     if (!user) {
       throw new Error("User not found.");
     }
-    const userAccounts = await this.accountProvider.getAccountsByUser(
+    const userAccounts = await this.accountProvider.getAccountsByUser(user);
+    for (const account of userAccounts) {
+      account.setBalance(await this.transactionProvider.getBalanceForAccount(
+        account
+      ));
+      user.addAccount(account);
+    }
+    for (const category of await this.categoryProvider.getCategoriesByUser(
       user
-    );
-    userAccounts.forEach(user.addAccount);
-    const userCategories = await this.categoryProvider.getCategoriesByUser(
-      user
-    );
-    userCategories.forEach(user.addCategory);
+    )) {
+      user.addCategory(category);
+    }
+
+    for (const budget of await this.budgetProvider.getBudgetsByUser(user)) {
+      user.addBudget(budget);
+    }
+
     return user;
   }
 }

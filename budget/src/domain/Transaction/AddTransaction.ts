@@ -25,6 +25,7 @@ export class AddTransaction {
       ...transactionDto
     });
     await this.transactionProvider.saveTransaction(transaction);
+    accountDetails.value.account.increaseBalance(transaction.signedAmount)
     accountDetails.addTransaction(transaction);
     return transaction;
   }

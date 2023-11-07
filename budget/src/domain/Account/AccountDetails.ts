@@ -8,7 +8,7 @@ export class AccountDetails {
   private _transactions: Transaction[] = [];
   private _payees: Payee[] = [];
 
-  constructor(account: Account) {
+  constructor(account:Account) {
     this._account = account;
   }
 
