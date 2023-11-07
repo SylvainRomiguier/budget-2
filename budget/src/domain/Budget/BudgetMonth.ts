@@ -1,5 +1,5 @@
 import { BudgetMonthId, BudgetMonthIdDto } from "./BudgetMonthId";
-import { CategoryBudget, CategoryBudgetDto } from "./CategoryBudget";
+import { CategoryBudget, CategoryBudgetDto } from "./BudgetCategory";
 
 export type BudgetMonthDto = {
   budgetMonthId: BudgetMonthIdDto;

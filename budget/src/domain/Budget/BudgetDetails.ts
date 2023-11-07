@@ -16,12 +16,12 @@ export class BudgetDetails {
     };
   }
 
-  addYear(budgetYear: BudgetYear) {
-    this.removeYear(budgetYear);
+  addBudgetYear(budgetYear: BudgetYear) {
+    this.removeBudgetYear(budgetYear);
     this._budgetYears.push(budgetYear);
   }
 
-  removeYear(budgetYear: BudgetYear) {
+  removeBudgetYear(budgetYear: BudgetYear) {
     this._budgetYears = this._budgetYears.filter((by) => !by.equal(budgetYear));
   }
 }

@@ -3,9 +3,9 @@ import { ValueObject } from "../ValueObject";
 
 
 
-export type CategoryBudgetIdDto = {
+export type BudgetCategoryIdDto = {
   budgetId: BudgetId;
   categoryId: string;
 };
 
-export class CategoryBudgetId extends ValueObject<CategoryBudgetIdDto> {}
+export class BudgetCategoryId extends ValueObject<BudgetCategoryIdDto> {}
