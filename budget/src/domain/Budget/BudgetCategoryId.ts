@@ -1,11 +1,12 @@
-import { BudgetId } from "./BudgetId";
 import { ValueObject } from "../ValueObject";
+import { CategoryId } from "../Category/CategoryId";
+import { BudgetMonthId } from "./BudgetMonthId";
 
 
 
 export type BudgetCategoryIdDto = {
-  budgetId: BudgetId;
-  categoryId: string;
+  budgetMonthId: BudgetMonthId;
+  categoryId: CategoryId;
 };
 
 export class BudgetCategoryId extends ValueObject<BudgetCategoryIdDto> {}

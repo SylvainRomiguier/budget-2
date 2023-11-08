@@ -1,17 +1,17 @@
 import { BudgetMonthId, BudgetMonthIdDto } from "./BudgetMonthId";
-import { CategoryBudget, CategoryBudgetDto } from "./BudgetCategory";
+import { BudgetCategory, BudgetCategoryDto } from "./BudgetCategory";
 
 export type BudgetMonthDto = {
   budgetMonthId: BudgetMonthIdDto;
-  categoryBudgets: CategoryBudgetDto[];
+  categoryBudgets: BudgetCategoryDto[];
 };
 export class BudgetMonth {
   private _id: BudgetMonthId;
-  private _categoryBudgets: CategoryBudget[] = [];
+  private _categoryBudgets: BudgetCategory[] = [];
   constructor(budgetMonthDto: BudgetMonthDto) {
     this._id = new BudgetMonthId(budgetMonthDto.budgetMonthId);
     this._categoryBudgets = budgetMonthDto.categoryBudgets.map(
-      (cb) => new CategoryBudget(cb)
+      (cb) => new BudgetCategory(cb)
     );
   }
 
@@ -22,12 +22,12 @@ export class BudgetMonth {
     };
   }
 
-  addCategoryBudget(categoryBudget: CategoryBudget) {
-    this.removeCategoryBudget(categoryBudget);
+  addBudgetCategory(categoryBudget: BudgetCategory) {
+    this.removeBudgetCategory(categoryBudget);
     this._categoryBudgets.push(categoryBudget);
   }
 
-  removeCategoryBudget(categoryBudget: CategoryBudget) {
+  removeBudgetCategory(categoryBudget: BudgetCategory) {
     this._categoryBudgets = this._categoryBudgets.filter(
       (cb) => !cb.equal(categoryBudget)
     );

@@ -5,7 +5,7 @@ import { Month } from "./Month";
 
 export type BudgetMonthIdDto = {
   budgetYearId: BudgetYearId;
-  budgetMonthId: Month;
+  month: Month;
 };
 
 export class BudgetMonthId extends ValueObject<BudgetMonthIdDto> {}
