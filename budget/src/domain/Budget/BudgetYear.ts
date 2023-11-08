@@ -30,15 +30,15 @@ export class BudgetYear {
 
   getBudgetMonth(_month: number) {
     const month = new Month(_month);
-    const budgetMonth = this._budgetMonths.find(bm => bm.value.id.value.budgetMonthId.equal(month));
+    const budgetMonth = this._budgetMonths.find(bm => bm.value.id.value.month.equal(month));
     return budgetMonth;
   }
 
   private sort() {
     this._budgetMonths.sort(
       (bm1, bm2) =>
-        bm1.value.id.value.budgetMonthId.value -
-        bm2.value.id.value.budgetMonthId.value
+        bm1.value.id.value.month.value -
+        bm2.value.id.value.month.value
     );
   }
 
